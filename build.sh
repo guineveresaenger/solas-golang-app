@@ -58,12 +58,13 @@ function gexample::build::validate_tree {
     #
     # ATTENTION!
     #
-    # NOTE: You MUST set you project name correctly here.
+    # NOTE: You MUST set your project name correctly here.
     #       This example is one extra directory level deeper than
     #       a normal project.  Please adjust accordingly.
     #       e.g. you probably want the following:
     #EXPECTED_BUILD_PATH="/src/github.com/samsung-cnct/YOUR-PROJECT"
     #EXPECTED_BUILD_PATH="/src/github.com/samsung-cnct/golang-tools/example-project"
+    EXPECTED_BUILD_PATH="/src/github.com/samsung-cnct/solas-golang-app"
 
     if [ "${1}" != "${EXPECTED_BUILD_PATH}" ]; then
         gexample::build::error "Expected build path ${EXPECTED_BUILD_PATH} not found."
@@ -83,6 +84,8 @@ unset CDPATH
 
 # XXX: this won't work if the last component is a symlink
 my_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+echo MY DIR HERE!!!!
+echo $my_dir
 #
 #
 # ATTENTION!
@@ -92,7 +95,9 @@ my_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 #       a normal project.  Please adjust accordingly.
 #       e.g. you probably want the following:
 #git_dir=$( cd "$( dirname "${my_dir}/.." )" && pwd)
-git_dir=$( cd "$( dirname "${my_dir}/../.." )" && pwd)
+git_dir=$( cd "$( dirname "${my_dir}/.." )" && pwd)
+echo GIT DIR HERE!!!!
+echo $git_dir
 #
 #
 # ATTENTION!
@@ -107,8 +112,10 @@ git_dir=$( cd "$( dirname "${my_dir}/../.." )" && pwd)
 #       a normal project.  Please adjust accordingly.
 #       e.g. you probably want the following:
 #go_dir=$( cd "$( dirname "${my_dir}/../../../../.." )" && pwd)
-go_dir=$( cd "$( dirname "${my_dir}/../../../../../.." )" && pwd)
+go_dir=$( cd "$( dirname "${my_dir}/../../../../.." )" && pwd)
 build_dir=$( echo ${my_dir#$go_dir})
+echo BUILD DIR HERE!!!!
+echo $build_dir
 
 #
 gexample::build::info " "
@@ -231,7 +238,7 @@ fi
 #
 #GOLANG_CONTAINER="golang:1.6"
 #  Make settable via args/env vars
-GOLANG_CONTAINER=${GOLANG_CONTAINER:-"quay.io/samsung_cnct/goglide:1.8.3"}
+GOLANG_CONTAINER=${GOLANG_CONTAINER:-"quay.io/samsung_cnct/golang-container"} # this is :latest for now by default
 
 BUILD_VERSION="0.0.3"
 
