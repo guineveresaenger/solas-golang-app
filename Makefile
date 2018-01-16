@@ -9,13 +9,14 @@
 # https://hub.docker.com/_/golang/
 #
 VERSION := 0.0.3
-DOCKER_IMAGE := gexample
+DOCKER_IMAGE := solas-golang-app
 #
 # do some repo evals... want everyone to use their own, unless building for the team
 #
 DEFAULT_REPO := "samsung-bogus"
 DOCKER_REPO ?= $(DEFAULT_REPO)
 REPO := $(DOCKER_REPO)
+export DOCKER_REPO=quay.io/guineveresaenger
 #
 #
 #
